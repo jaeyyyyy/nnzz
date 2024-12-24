@@ -14,7 +14,6 @@ import pandas as pd
 # 왼쪽 프레임으로 전환
 def switch_left() :
     driver.switch_to.parent_frame()
-    # implicitly_wait로 못잡길래 아래처럼 변경
     iframe = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="searchIframe"]')))
     driver.switch_to.frame(iframe)
 
@@ -22,7 +21,6 @@ def switch_left() :
 def switch_right() :
     driver.switch_to.parent_frame()
     try:
-        # implicitly_wait로 못잡길래 아래처럼 변경
         iframe = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, '//*[@id="entryIframe"]')))
         driver.switch_to.frame(iframe)
 
@@ -252,54 +250,6 @@ while(loop):
 
         except Exception as e:
             print(store_name + " : 방송출연 한적 없습니다.")
-
-            # 일단 기다림
-            # driver.implicitly_wait(3)
-            #
-            # # 예약 탭이 눌러진 경우....alert가 뜹니다. 창 닫기
-            # try:
-            #     driver.implicitly_wait(3)
-            #     driver.find_element(By.CLASS_NAME, 'O4vgv').click()
-            # except Exception as e:
-            #     print("팝업창 없음")
-            #
-            # switch_right()
-            # # 다하지 않았는데 다음 결과로 넘어가는 경우가 있어서
-            # # 저장된 가게 이름과 페이지의 가게 이름이 다르다면 되돌아갑니다.
-            # if(store_name != title.find_element(By.XPATH, './/div[1]/div[1]/span[1]').text):
-            #     driver.back()
-            #     print("저장된 가게 이름과 페이지 가게 이름이 달라서 뒤로 돌아갑니다.")
-            #     switch_right()
-            #
-            #
-            # # 가끔 다른 탭 눌려지는 경우가 있어서 홈 탭으로 다시 복귀
-            # WebDriverWait(driver, 10).until(
-            #     EC.element_to_be_clickable((By.XPATH, '//div[@class="flicking-camera"]/a[1]'))
-            # ).click()
-
-
-            # try:
-            #     WebDriverWait(driver, 10).until(
-            #         EC.element_to_be_clickable((By.XPATH, '//div[@class="y6tNq"]/span'))
-            #     ).click()
-            #
-            #     # 영업 시간 더보기 버튼을 누르고 부모요소 발견될때까지 기다림
-            #     parent_element = WebDriverWait(driver, 10).until(
-            #         EC.presence_of_element_located((By.XPATH, '//a[@class="gKP9i RMgN0"]'))
-            #     )
-            #
-            #     # 부모요소 발견되면 자식요소 찾기
-            #     child_elements = parent_element.find_elements(By.XPATH, './*[@class="w9QyJ"]')
-            #
-            #     for child in child_elements:
-            #         # 각 자식 요소 내에서 클래스가 'A_cdD'인 span 요소 찾기
-            #         span_elements = child.find_elements(By.XPATH, './/span[@class="A_cdD"]')
-            #
-            #         # 찾은 span 요소들의 텍스트 출력
-            #         for span in span_elements:
-            #             business_hours.append(span.text)
-            # except Exception as retry:
-            #     print(store_name + " : 영업시간 재시도 오류")
 
         # 가게 고유 아이디
         try:
