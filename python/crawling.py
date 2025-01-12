@@ -418,6 +418,7 @@ while(loop):
 
     if stores:
         df = pd.DataFrame(stores)
+        # 파일명을 바꿔주세요.
         df.to_csv('00동 맛집.csv', mode = 'a', encoding='utf-8-sig', index=False)
         print("파일 저장 완료")
         del stores
