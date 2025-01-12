@@ -5,8 +5,6 @@ from selenium.webdriver.ie.service import Service
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 import time
-import random
-import re
 import pandas as pd
 
 # 왼쪽 프레임으로 전환
