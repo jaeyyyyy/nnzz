@@ -418,7 +418,7 @@ while(loop):
 
     if stores:
         df = pd.DataFrame(stores)
-        df.to_csv('논현동 맛집.csv', mode = 'a', encoding='utf-8-sig', index=False)
+        df.to_csv('00동 맛집.csv', mode = 'a', encoding='utf-8-sig', index=False)
         print("파일 저장 완료")
         del stores
         stores = []
