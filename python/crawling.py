@@ -198,8 +198,16 @@ while(loop):
         try:
             tel = driver.find_element(By.CLASS_NAME, 'xlx7Q').text
         except Exception as e:
-            # 전화번호 없는 가게도 있습니다.
-            print(store_name + " : 전화번호 없음")
+            # 휴대폰 번호를 연결해놓은 가게
+            try:
+                tel_box = driver.find_element(By.XPATH, 'div.O8qbU.nbXkr')
+                if tel_box:
+                    tel_box.click()
+                    tel = tel_box.find_element(By.XPATH,
+                                                       './/div[@class="J7eF_"]/em').text
+            # 전화번호 진짜 없음
+            except Exception as e:
+                print(store_name + " : 전화번호 없음")
 
         # 영업시간
         try:
