@@ -409,8 +409,8 @@ while(loop):
 
         # 저장할 정보
         stores_info = {
-            'name': store_name,
             'store_id': store_id,
+            'name': store_name,
             'category': category,
             'address': address,
             'tel': tel,
