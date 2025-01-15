@@ -200,14 +200,19 @@ while(loop):
         except Exception as e:
             # 휴대폰 번호를 연결해놓은 가게
             try:
-                tel_box = driver.find_element(By.XPATH, 'div.O8qbU.nbXkr')
+                print(store_name + " : 전화번호가 없나?")
+                tel_box = driver.find_element(By.XPATH, '//div[contains(@class, "O8qbU nbXkr")]//div[@class="mqM2N"]')
                 if tel_box:
-                    tel_box.click()
+                    # print(store_name + " : tel_box를 찾음")
+                    tel_box_a = tel_box.find_element(By.XPATH, './/a')
+                    tel_box_a.click()
+                    # print("tel_box_a는 눌렀음")
                     tel = tel_box.find_element(By.XPATH,
-                                                       './/div[@class="J7eF_"]/em').text
+                                                       './/div[contains(@class, "_YI7T kH0zp")]/div[@class="J7eF_"]/em').text
             # 전화번호 진짜 없음
             except Exception as e:
                 print(store_name + " : 전화번호 없음")
+
 
         # 영업시간
         try:
