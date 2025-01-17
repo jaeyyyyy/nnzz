@@ -416,7 +416,7 @@ while(loop):
 
     # 페이지 다음 버튼이 활성화 상태일 경우 계속 진행
     if (next_page == 'false'):
-        driver.find_element(By.XPATH, '//*[@id="app-root"]/div/div[3]/div[2]/a[7]').click()
+        driver.find_element(By.XPATH, '//*[@id="app-root"]/div/div[2]/div[2]/a[7]').click()
         print("다음 페이지를 진행합니다.")
     # 아닐 경우 루프 정지
     else:
