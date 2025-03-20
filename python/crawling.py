@@ -74,7 +74,7 @@ driver.maximize_window()
 loop = True
 
 # 네이버 지도 로드
-URL = 'https://map.naver.com/search/영등포동1가 맛집'
+URL = 'https://map.naver.com/search/00동 맛집'
 driver.get(URL)
 # 10초 안에 웹 페이지를 로드하면 바로 넘어가거나, 10초를 기다림
 driver.implicitly_wait(10)
