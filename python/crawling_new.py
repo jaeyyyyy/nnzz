@@ -102,7 +102,7 @@ franchise_values = ['스타벅스', '메가MGC', '메가커피', '할리스', '�
 
 not_category_values = [
     '아이스크림', '빙수', '밀키트', '테이크아웃커피', '라이브카페', '스터디카페', '북카페',
-    '단란주점', '유흥주점', '푸드트럭', '프랜차이즈본사', '다방'
+    '단란주점', '유흥주점', '푸드트럭', '프랜차이즈본사', '다방', '과일,주스전문점'
 ]
 
 # 정규 표현식 패턴 생성
@@ -196,18 +196,26 @@ while (loop):
 
         # 여기부터 크롤링 시작
         # 제목 표시되는 부분
+        title = None
         try:
             title = WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.XPATH, '//div[@class="zD5Nm undefined"]'))
             )
         except Exception as e:
-            print("타이틀 추출 실패")
+            print("타이틀 추출 실패 - 첫 시도")
             time.sleep(1)
-            #driver.refresh()  # 사이트를 불러오지 못 하는 경우가 있어서 새로고침 코드 추가
-            #switch_right()
-            title = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.XPATH, '//div[@class="zD5Nm undefined"]'))
-            )
+            try:
+                #driver.refresh()  # 사이트를 불러오지 못 하는 경우가 있어서 새로고침 코드 추가
+                #switch_right()
+                title = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.XPATH, '//div[@class="zD5Nm undefined"]'))
+                )
+            except TimeoutException:
+                print("타이틀 추출 실패 - 두 번째 시도, 다음으로 진행합니다.")
+                title = None
+
+        if title is None:
+            continue # 다음가게로 넘어감
 
         # 가게이름 / 카테고리 / 미쉐린,착한가격업소,식약처인증우수음식점 여부
         try:
