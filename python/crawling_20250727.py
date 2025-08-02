@@ -311,6 +311,13 @@ while (loop):
                 except Exception as e:
                     amenity = ''
 
+            # '소비'라는 단어를 포함한 항목 제거
+            if amenity:
+                amenity_list = [item.strip() for item in amenity.split(',')]
+                amenity_filtered = [item for item in amenity_list if '소비' not in item]
+                amenity = ', '.join(amenity_filtered)
+
+
             # 방송 출연
             try:
                 try:
