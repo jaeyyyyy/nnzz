@@ -224,16 +224,8 @@ while (loop):
 
             # 가게이름 / 카테고리 추출 (더 안전한 방법)
             try:
-                # 모든 span 요소를 찾아서 처리
-                spans = title.find_elements(By.XPATH, './/span')
-                if len(spans) >= 2:
-                    store_name = spans[0].text.strip() if spans[0].text else ''
-                    category = spans[1].text.strip() if spans[1].text else ''
-                else:
-                    # 대안적인 방법
-                    store_name = safe_get_text(title, './/div[1]/div[1]/span[contains(@class, "GHAhO")]')
-                    category = safe_get_text(title, './/div[1]/div[1]/span[2]')
-
+                store_name = safe_get_text(title, './/div[1]/div[1]/span[contains(@class, "GHAhO")]')
+                category = safe_get_text(title, './/div[1]/div[1]/span[2]')
                 # 옵션 정보 (미쉐린, 착한가격 등)
                 option = safe_get_text(title, 'div.XtBbS', "css")
 
