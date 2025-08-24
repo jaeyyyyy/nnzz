@@ -236,8 +236,8 @@ while (loop):
 
             # 가게이름 / 카테고리 추출 (더 안전한 방법)
             try:
-                store_name = safe_get_text(title, './/div[1]/div[1]/span[contains(@class, "GHAhO")]')
-                category = safe_get_text(title, './/div[1]/div[1]/span[2]')
+                store_name = safe_get_text(title, './/div[1]/div[1]/span[@class="GHAhO"]')
+                category = safe_get_text(title, './/div[1]/div[1]/span[@class="lnJFt"]')
                 # 옵션 정보 (미쉐린, 착한가격 등)
                 option = safe_get_text(title, 'div.XtBbS', "css")
 
