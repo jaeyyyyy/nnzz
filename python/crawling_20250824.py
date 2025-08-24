@@ -204,16 +204,27 @@ while (loop):
             # 제목 표시되는 부분
             title = None
             try:
-                title = WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.XPATH, '//div[contains(@class,"place_section")]//div[contains(@class,"zD5Nm")]'))
+                # 프레임이 전환된 후 place_section이 나타날 때까지 기다림
+                WebDriverWait(driver, 5).until(
+                    EC.presence_of_element_located((By.XPATH, '//div[contains(@class,"place_section")]'))
+                )
+                # 이제 title 찾기
+                title = WebDriverWait(driver, 5).until(
+                    EC.presence_of_element_located(
+                        (By.XPATH, '//div[contains(@class,"place_section")]/div[contains(@class,"zD5Nm")]'))
                 )
             except Exception as e:
                 print(f"{index}번째 가게 - 타이틀 추출 실패 첫 시도: {str(e)}")
                 time.sleep(2)
                 try:
+                    # 프레임이 전환된 후 place_section이 나타날 때까지 기다림
+                    WebDriverWait(driver, 10).until(
+                        EC.presence_of_element_located((By.XPATH, '//div[contains(@class,"place_section")]'))
+                    )
+                    # 이제 title 찾기
                     title = WebDriverWait(driver, 10).until(
                         EC.presence_of_element_located(
-                            (By.XPATH, '//div[contains(@class,"place_section")]//div[contains(@class,"zD5Nm")]'))
+                            (By.XPATH, '//div[contains(@class,"place_section")]/div[contains(@class,"zD5Nm")]'))
                     )
                 except Exception as e:
                     print(f"{index}번째 가게 - 타이틀 추출 실패 두 번째 시도, 스킵합니다.")
